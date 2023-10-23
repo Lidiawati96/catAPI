@@ -79,8 +79,7 @@ public class CatJpaResource {
 	}
 	
 	@RequestMapping(value = "/UploadCats", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-	public ResponseEntity<Void> uploadCat( 
-			@RequestPart("filesUpload") MultipartFile filesUpload){
+	public ResponseEntity<Void> uploadCat(@RequestPart("filesUpload") MultipartFile filesUpload) {
 		Cat createdCat = CatService.saveByFile(filesUpload);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
 				.path("/{id}").buildAndExpand(createdCat.getId()).toUri();
